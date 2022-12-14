@@ -15,8 +15,10 @@ const ynab = (startingYearOverride) => {
 };
 
 const getStartingYear = (override) => {
-  if (override && typeof override !== "number") {
-    throw new Error("Starting year parameter should be a number.");
+  if (!override) {
+    throw new Error("You must provide the year of the first transaction in the list you're scraping. e.g. ynab(2022)");
+  } else if (typeof override !== "number") {
+    throw new Error("The starting year argument should be a number.");
   }
   return override || new Date().getFullYear();
 };
